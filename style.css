@@ -1,0 +1,103 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Estilo del body */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #121212; /* Fondo oscuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f5f5f5;
+}
+
+/* Animación fade-in y slide-up */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.box {
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+
+  /* Animación */
+  opacity: 0; /* empieza invisible */
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* Icono */
+#icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: url("./imgsTemp/iconpfp.png") center/cover no-repeat;
+}
+
+
+/* Nombre */
+#Name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Bio */
+#Bio {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+/* Lista de logros */
+#ArchList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Elementos de la lista */
+#ArchList div:hover {
+  background: #3a3a3a;
+}
+/* Estilo de cada logro */
+.arch {
+  background: #2a2a2a;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: background 0.3s;
+}
+/* Efecto hover */
+.arch:hover {
+  background: #3a3a3a;
+}
+/* Icono del logro */
+.arch img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
