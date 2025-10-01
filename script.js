@@ -1,9 +1,6 @@
-
- //Animación de aparición de logros 
- // Datos de las skills
 document.addEventListener("DOMContentLoaded", () => {
 
-  //Habilitie data
+  //Data
 const skills = {
   Python: {
     description: "Can write scripts, manage data and build apps with Python.",
