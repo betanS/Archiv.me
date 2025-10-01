@@ -66,38 +66,92 @@ body {
   color: #aaa;
   margin-bottom: 1.5rem;
 }
-
-/* Lista de logros */
-#ArchList {
+/* Badges */
+#Badges {
+  margin-top: 1rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+  justify-content: center;
 }
 
-/* Elementos de la lista */
-#ArchList div:hover {
-  background: #3a3a3a;
+.badge img {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
-/* Estilo de cada logro */
-.arch {
-  background: #2a2a2a;
-  padding: 0.75rem;
-  border-radius: 0.75rem;
+
+.badge img:hover {
+  transform: scale(1.1);
+}
+
+/* Modal */
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.9rem;
-  opacity: 0;
-  transition: background 0.3s;
-}
-/* Efecto hover */
-.arch:hover {
-  background: #3a3a3a;
-}
-/* Icono del logro */
-.arch img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+  z-index: 1000;
 }
 
+.hidden {
+  display: none !important;
+}
+.modal-content {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: fadeUp 0.4s ease-out;
+}
+
+#closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Barra de nivel */
+.skill-level {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.bar {
+  width: 100%;
+  height: 12px;
+  background: #333;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+#skillBar {
+  height: 100%;
+  width: 0%;
+  background: #4caf50;
+  transition: width 0.6s ease-out;
+}
+
+/* Animación modal */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
