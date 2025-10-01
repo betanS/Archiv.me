@@ -5,6 +5,9 @@
   box-sizing: border-box;
 }
 
+#skillForm {
+  text-align: left;
+}
 
 /* Estilo del body */
 body {
@@ -70,6 +73,7 @@ body {
 #Badges {
   margin-top: 1rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
 }
@@ -142,16 +146,4 @@ body {
   width: 0%;
   background: #4caf50;
   transition: width 0.6s ease-out;
-}
-
-/* Animación modal */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
