@@ -84,15 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
       badgesContainer.appendChild(badge);
 
       counter++;
-      // Cada 6 badges, insertar un separador fuerce la siguiente fila
-      /*if (counter % 6 === 0) {
-        const br = document.createElement('div');
-        br.className = 'line-break';
-        badgesContainer.appendChild(br);
-      }*/
     });
 
-    // Ocultar formulario si quieres
+    // Ocultar formulario
     skillForm.style.display = 'none';
   });
 
