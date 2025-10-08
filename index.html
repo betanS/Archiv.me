@@ -1,46 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archi</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>archiv.me | Welcome</title>
+  <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
+  <div class="container">
+    <h1 class="logo">archiv<span>.me</span></h1>
+    <p class="subtitle">Your digital archive of useless (or not so useless) achievements.</p>
 
-    <script src = "script.js"></script>
-    <div class="box">
-        <div id = "icon"></div>
-        <div id = "Name">Alejandro Betancort</div>
-        <div id = "Bio">Full-stack dev. Collector of useless achievements.</div>
-        <form id="skillForm">
-    <h2>Select your skills</h2>
-    <label><input type="checkbox" name="skill" value="Python"> Python</label><br>
-    <label><input type="checkbox" name="skill" value="HTML"> HTML</label><br>
-    <label><input type="checkbox" name="skill" value="CSS"> CSS</label><br>
-    <label><input type="checkbox" name="skill" value="JavaScript"> JavaScript</label><br>
-    <label><input type="checkbox" name="skill" value="C++"> C++</label><br>
-    <label><input type="checkbox" name="skill" value="Java"> Java</label><br>
-    <label><input type="checkbox" name="skill" value="touchGrass">Touch Grass</label>
-    <button type="submit">Generate Badges</button>
-  </form>
-  
-        <div id = "Badges"></div>
-
-            <!--Modal oculto-->
-            <div id="modal" class="hidden">
-                <div class="modal-content">
-                    <span id="closeBtn">&times;</span>
-                    <h2 id="skillName"></h2>
-                    <p id="skillDescription"></p>
-                    <div class="skill-level">
-                        <span>Level:</span>
-                        <div class="bar">
-                            <div id="skillBar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="buttons">
+      <button onclick="window.location.href='login.html'">Login</button>
+      <button onclick="window.location.href='register.html'">Register</button>
     </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
 </body>
 </html>

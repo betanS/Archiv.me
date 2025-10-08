@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archi</title>
+    <link rel="stylesheet" href="styles/styleProfile.css">
+</head>
+<body>
+
+    <script src="scripts/scriptprofile.js"></script>
+    <div class="box">
+        <div id="icon"></div>
+        <div id="Name"></div>
+        <div id="Bio">Full-stack dev. Collector of useless achievements.</div>
+        
+        <div id="Badges"></div>
+
+        <!--Modal oculto-->
+        <div id="modal" class="hidden">
+            <div class="modal-content">
+                <span id="closeBtn">&times;</span>
+                <h2 id="skillName"></h2>
+                <p id="skillDescription"></p>
+                <div class="skill-level">
+                    <span>Level:</span>
+                    <div class="bar">
+                        <div id="skillBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("loaded");
+  });
+</script>
+</body>
+</html>

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Datos de skills
   const skills = {
     Python: {
       description: "Can write scripts, manage data and build apps with Python.",
@@ -32,10 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const skillForm = document.getElementById('skillForm');
   const badgesContainer = document.getElementById('Badges');
 
-  // Mapa para nombres de archivos de imagen (asegura coincidencia con los iconos)
   function getFileNameForSkill(skill){
     const map = {
       "C++": "c++",
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return map[skill] || skill.toLowerCase().replace(/\s+/g, '-').replace(/\+/g, 'p');
   }
 
-  // Convierte nivel a porcentaje
   function levelToPercent(level) {
     switch (level) {
       case "Low": return 33;
@@ -58,36 +54,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Generar badges desde el form
-  skillForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+  /* ------------------- Cargar usuario y badges ------------------- */
+  const currentUser = localStorage.getItem('currentUser');
+  document.getElementById('Name').textContent = currentUser || "Guest";
 
-    const selected = Array.from(document.querySelectorAll('input[name="skill"]:checked'))
-                          .map(i => i.value);
+  const savedSkills = JSON.parse(localStorage.getItem(currentUser + '_skills')) || [];
 
-    badgesContainer.innerHTML = ''; // limpia
+  let counter = 0;
+  savedSkills.forEach(skill => {
+    const badge = document.createElement('div');
+    badge.className = 'badge';
+    badge.setAttribute('data-skill', skill);
 
-    let counter = 0;
-    selected.forEach(skill => {
-      const badge = document.createElement('div');
-      badge.className = 'badge';
-      badge.setAttribute('data-skill', skill);
+    const img = document.createElement('img');
+    img.src = `imgsTemp/${getFileNameForSkill(skill)}.png`;
+    img.alt = skill;
+    img.width = 48;
+    img.height = 48;
+    img.style.objectFit = 'contain';
 
-      const img = document.createElement('img');
-      img.src = `imgsTemp/${getFileNameForSkill(skill)}.png`;
-      img.alt = skill;
-      img.width = 48;
-      img.height = 48;
-      img.style.objectFit = 'contain';
+    badge.appendChild(img);
+    badgesContainer.appendChild(badge);
 
-      badge.appendChild(img);
-      badgesContainer.appendChild(badge);
-
-      counter++;
-    });
-
-    // Ocultar formulario
-    skillForm.style.display = 'none';
+    counter++;
   });
 
   /* ---------- Delegación de eventos: escucha clicks en contenedor ---------- */
@@ -105,13 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     openSkillModal(skill);
   });
 
-  // Abrir modal rellenando datos
   function openSkillModal(skill) {
     const data = skills[skill] || { description: "No description available.", level: "Low" };
     skillName.textContent = skill;
     skillDescription.textContent = data.description;
 
-    // animar barra
     skillBar.style.width = '0%';
     setTimeout(() => {
       skillBar.style.width = `${levelToPercent(data.level)}%`;
@@ -120,12 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.remove('hidden');
   }
 
-  // Cerrar modal
   closeBtn.addEventListener('click', () => {
     modal.classList.add('hidden');
   });
 
-  // cerrar si clicas fuera del contenido modal
   modal.addEventListener('click', (e) => {
     if (e.target === modal) modal.classList.add('hidden');
   });

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>archiv.me | Register</title>
+  <link rel="stylesheet" href="styles/form.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">archiv<span>.me</span></h1>
+    <p class="subtitle">Create your archive account</p>
+
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+      <button type="submit">Register</button>
+      <p class="redirect">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      if (localStorage.getItem(username)) {
+        alert("Username already exists!");
+        return;
+      }
+
+      // Guardamos usuario: clave = username, valor = [username, password]
+      localStorage.setItem(username, JSON.stringify([username, password]));
+
+      alert("Account created successfully!");
+      window.location.href = "login.html";
+    });
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("loaded");
+  });
+</script>
+
+</body>
+</html>
