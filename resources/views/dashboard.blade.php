@@ -11,8 +11,8 @@
 </head>
 <body>
   <div class="box">
-    <h2>Welcome, <span id="usernameDisplay"></span></h2>
-    
+    <h2>Welcome, {{ session('username', 'Guest') }}</h2>
+
     <div id="badgesPreview"></div>
 
     <h3>Edit your skills:</h3>

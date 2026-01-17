@@ -4,21 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>archiv.me | Login</title>
-  <link rel="stylesheet" href="styles/form.css">
+  <link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+
 </head>
 <body>
   <div class="container">
     <h1 class="logo">archiv<span>.me</span></h1>
     <p class="subtitle">Login to your archive account</p>
-
-    <form action="{{ url('/dashboard') }}" method="get">
-      <input type="text" id="username" placeholder="Username"/>
-      <input type="password" id="password" placeholder="Password"/>
-      <button type="submit">Login</button>
-      <p class="redirect">Don't have an account? <a href="register.html">Register</a></p>
+    <form method="POST" action="{{ url('/login') }}">
+      @csrf
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
     </form>
   </div>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("loaded");
+});
+</script>
 
-  
 </body>
 </html>
