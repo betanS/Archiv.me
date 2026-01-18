@@ -37,7 +37,8 @@
     <button type="submit" style="margin-top:1rem;">Save Skills</button>
   </form>
 
-  <button onclick="window.location.href='{{ url('/profile') }}'" style="margin-top:1rem;">Go to Profile</button>
+  <button onclick="window.open('{{ url('/'.auth()->user()->name) }}', '_blank')">Go to Profile</button>
+
 </div>
 
 <script>

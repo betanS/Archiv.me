@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 // --------------------
 // Home / Index
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // --------------------
-// Profile (solo lectura por ahora)
+// Profile 
 // --------------------
-Route::get('/profile', [DashboardController::class, 'profile']); // más adelante para multi-perfil
+// Perfil público: /nombreUsuario
+Route::get('/{name}', [ProfileController::class, 'show'])->name('profile.show');

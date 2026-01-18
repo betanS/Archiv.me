@@ -10,61 +10,59 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     // Mostrar login
-    public function showLogin()
-    {
+    public function showLogin(){
         return view('login');
     }
 
     // Procesar login
-    public function login(Request $request)
-{
+    public function login(Request $request){
     $request->validate([
-    'email'    => 'required|email',
+    'email' => 'required|email',
     'password' => 'required|string',
     ]);
 
     $user = User::where('email', $request->email)->first();
 
+
     if (!$user || !Hash::check($request->password, $user->password)) {
         return back()->withErrors([
-            'username' => 'Credenciales incorrectas',
+            'name' => 'Credenciales incorrectas',
         ]);
     }
 
-    Auth::login($user); // inicia sesión
+    Auth::login($user);
     $request->session()->regenerate();
 
     return redirect('/dashboard');
 }
 
 
+
     // Mostrar register
-    public function showRegister()
-    {
+    public function showRegister(){
         return view('register');
     }
 
     // Procesar register
-    public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|string|min:4',
-        ]);
+    public function register(Request $request){
+    $data = $request->validate([
+        'name'     => 'required|string|max:255|unique:users', // ahora name = username
+        'email'    => 'required|email|unique:users',
+        'password' => 'required|string|min:4', // tu pin
+    ]);
 
-        User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+    User::create([
+        'name'     => $data['name'],   // name es username
+        'email'    => $data['email'],
+        'password' => Hash::make($data['password']),
+    ]);
 
-        return redirect('/login')->with('success', 'Account created successfully!');
+    return redirect('/login')->with('success', 'Account created successfully!');
     }
 
+
     // Logout
-    public function logout(Request $request)
-    {
+    public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

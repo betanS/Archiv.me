@@ -26,11 +26,15 @@ class DashboardController extends Controller
     // -------------------------
     // Mostrar profile
     // -------------------------
-    public function profile()
-    {
-        // solo lectura: pasamos el usuario actual
-        $user = Auth::user();
+    public function profile($name)
+{
+    $user = User::where('name', $name)->first();
 
-        return view('profile', compact('user'));
-    }
+    if (!$user) abort(404);
+
+    $skills = $user->skills ?? [];
+
+    return view('profile', compact('user', 'skills'));
+}
+
 }

@@ -9,12 +9,12 @@
 <body>
 <div class="box">
   <div id="icon"></div>
-  <div id="Name">{{ auth()->user()->name }}</div>
+  <div id="Name">{{ $user->name }}</div>
   <div id="Bio">Full-stack dev. Collector of useless achievements.</div>
 
   <div id="Badges">
     @php
-      $skills = auth()->user()->skills ?? [];
+      $skills = $user->skills ?? [];
     @endphp
     @foreach($skills as $skill)
       <div class="badge" data-skill="{{ $skill }}">
