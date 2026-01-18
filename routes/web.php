@@ -1,30 +1,40 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
+// --------------------
+// Home / Index
+// --------------------
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/dashboard', function () {
-    if (!session()->has('username')) {
-        return redirect('/login');
-    }
-    return view('dashboard');
-});
+// Login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 
-Route::post('/profile', function (Illuminate\Http\Request $request) {
-    session(['skills' => $request->input('skills')]); // save de session de las skills como medida temporal previa a configurar la db
-    return view('profile');
-});
-
- use App\Http\Controllers\AuthController;
-
-Route::get('/login', fn() => view('login'));
-Route::get('/register', fn() => view('register'));
-
-Route::post('/login', [AuthController::class, 'login']);
+// Register
+Route::get('/register', [AuthController::class, 'showRegister']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::post('/logout', [AuthController::class, 'logout']);
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
+// --------------------
+// Dashboard
+// --------------------
+// Antes: Route::get('/dashboard', function() { return view('dashboard'); });
+// Ahora:
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard/save-skills', [DashboardController::class, 'saveSkills'])->name('dashboard.saveSkills');
+});
+
+// --------------------
+// Profile (solo lectura por ahora)
+// --------------------
+Route::get('/profile', [DashboardController::class, 'profile']); // más adelante para multi-perfil
